@@ -5,7 +5,7 @@ from django.core.files import File
 from django.db import models
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name='Название на русском')
     slug = models.SlugField()
 
     class Meta:
@@ -18,13 +18,13 @@ class Category(models.Model):
         return f'/{self.slug}/'
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    slug = models.SlugField()
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    category = models.ForeignKey(Category, related_name='products', verbose_name="Категория", on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, verbose_name="Название")
+    slug = models.SlugField(verbose_name="Бренд")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="Стоимость")
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Изображение")
+    thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name="Миниатюра.Загрузите тоже изображение")
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
