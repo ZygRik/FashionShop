@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g7m=b9ep=i)%iyr!gfgffffdfdfffdfhfffwt4634b#1)y%wf+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,7 +44,11 @@ INSTALLED_APPS = [
     'product',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:8000',
+  'https://fashion-shop-ochre.vercel.app',
+)
 
 
 MIDDLEWARE = [
